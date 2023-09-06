@@ -24,6 +24,7 @@ public class SpringIntegrationHeaderValueApplication {
         Message<Integer> message = MessageBuilder
                 .withPayload(payload)
                 .setHeader("number", headerValue)
+				.setHeader("msgType", "MT910")
                 .build();
         channel.send(message);
     }
