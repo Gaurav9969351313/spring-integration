@@ -16,15 +16,22 @@ public class SpringIntegrationHeaderValueApplication {
 
         MessageChannel inputChannel = context.getBean("inputChannel", MessageChannel.class);
 
-        sendMessage(inputChannel, "odd", 1);
-        sendMessage(inputChannel, "even", 2);
+        // sendMessage(inputChannel, "odd", Integer.toString(3));
+        // sendMessage(inputChannel, "even", Integer.toString(2));
+
+		sendMessage(inputChannel, "json", "{\"name\":\"John\", \"age\":30}");
+        sendMessage(inputChannel, "xml", "<person><name>Mary</name><age>25</age></person>");
+
+        // Send an unknown payload
+        sendMessage(inputChannel, "unknown", "Some other data");
 	}
 
-	private static void sendMessage(MessageChannel channel, String headerValue, int payload) {
-        Message<Integer> message = MessageBuilder
+	private static void sendMessage(MessageChannel channel, String headerValue, String payload) {
+        Message<String> message = MessageBuilder
                 .withPayload(payload)
                 .setHeader("number", headerValue)
 				.setHeader("msgType", "MT910")
+				.setHeader("payload", headerValue)
                 .build();
         channel.send(message);
     }

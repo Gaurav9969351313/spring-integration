@@ -1,20 +1,14 @@
 package com.example.springintegrationheadervalue;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.router.HeaderValueRouter;
-import org.springframework.integration.transformer.HeaderEnricher;
-import org.springframework.integration.transformer.support.HeaderValueMessageProcessor;
-import org.springframework.integration.transformer.support.StaticHeaderValueMessageProcessor;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
-@Configuration
+// @Configuration
 public class IntConfig {
 
     @Bean
