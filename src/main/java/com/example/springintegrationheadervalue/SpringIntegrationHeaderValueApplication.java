@@ -53,5 +53,4 @@ public class SpringIntegrationHeaderValueApplication {
 		} else
 		 	return PayloadType.UNKNOWN.name().toLowerCase();
     }
-
 }

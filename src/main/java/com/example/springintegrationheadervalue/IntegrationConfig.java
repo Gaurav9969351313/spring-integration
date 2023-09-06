@@ -41,6 +41,8 @@ public class IntegrationConfig {
     public MessageHandler jsonMessageHandler() {
         return message -> {
             System.out.println("Received JSON payload: " + message.getPayload());
+            System.out.println("payload header: " + message.getHeaders().get("payload"));
+            System.out.println("===================================================================");
         };
     }
 
@@ -49,6 +51,7 @@ public class IntegrationConfig {
     public MessageHandler xmlMessageHandler() {
         return message -> {
             System.out.println("Received XML payload: " + message.getPayload());
+            System.out.println("payload header: " + message.getHeaders().get("payload"));
             System.out.println("===================================================================");
         };
     }
@@ -57,7 +60,9 @@ public class IntegrationConfig {
     @ServiceActivator(inputChannel = "unknownChannel")
     public MessageHandler unknownMessageHandler() {
         return message -> {
+            System.out.println("===================================================================");
             System.out.println("Received unknown payload: " + message.getPayload());
+            System.out.println("payload header: " + message.getHeaders().get("payload"));
             System.out.println("===================================================================");
         };
     }
