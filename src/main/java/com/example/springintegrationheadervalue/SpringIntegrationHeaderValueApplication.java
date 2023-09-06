@@ -31,9 +31,27 @@ public class SpringIntegrationHeaderValueApplication {
                 .withPayload(payload)
                 .setHeader("number", headerValue)
 				.setHeader("msgType", "MT910")
-				.setHeader("payload", headerValue)
+				// .setHeader("payload", headerValue)
+				.setHeader("payload", checkPayloadType(payload))
                 .build();
         channel.send(message);
+    }
+
+	public static boolean isJSON(String input) {
+		return input.trim().startsWith("{") && input.trim().endsWith("}");
+	}
+	
+	public static boolean isXML(String input) {
+		return input.trim().startsWith("<") && input.trim().endsWith(">");
+	}
+
+	public static String checkPayloadType(String payload) {
+		if (isJSON(payload)) {
+			return PayloadType.JSON.name().toLowerCase();
+		} else if (isXML(payload)) {
+			return PayloadType.XML.name().toLowerCase();
+		} else
+		 	return PayloadType.UNKNOWN.name().toLowerCase();
     }
 
 }
